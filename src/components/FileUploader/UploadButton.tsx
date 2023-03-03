@@ -1,11 +1,6 @@
 import { useState } from 'react';
 
 import axios from 'axios';
-
-const UploadButton = () => {
-  import { useState } from 'react';
-
-import axios from 'axios';
 import FormData from 'form-data';
 
 const UploadButton = () => {
@@ -17,14 +12,14 @@ const UploadButton = () => {
     setFileName(e.target.files[0].name);
   };
 
-  const uploadFile = async (e) => {
+  const uploadFile = async () => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('fileName', fileName);
     try {
-      const res = await axios.post('/api/test/upload/', formData);
-      console.log(res);
+      await axios.post('/api/test/upload/', formData);
     } catch (ex) {
+      // eslint-disable-next-line no-console
       console.log(ex);
     }
   };

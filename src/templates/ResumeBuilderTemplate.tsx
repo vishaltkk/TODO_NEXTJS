@@ -1,7 +1,6 @@
 import React, { FC, ReactNode, useState } from 'react';
 
 import { FileUploader } from '../components/FileUploader';
-import { MainFooter } from '../components/MainFooter';
 import { Navbar } from '../components/NavBar';
 import { MainPageProps } from '../types/models';
 
@@ -35,11 +34,6 @@ const ResumeBuilderTemplate: FC<IMainProps> = ({ meta, data }) => {
       <div className={`${navbarOpen ? `invisible` : `visible`}`}>
         <FileUploader />
       </div>
-      <MainFooter
-        footerProp={data.footerProp}
-        companyEmailAddress={data.companyEmailAddress}
-        SITENAME={data.siteName}
-      />
     </>
   );
 };
