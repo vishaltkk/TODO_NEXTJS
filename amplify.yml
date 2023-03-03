@@ -14,7 +14,6 @@ frontend:
         - echo "DATABASE_URL=$DATABASE_URL" >> .env
         - echo "DATABASE_URL=$DATABASE_URL" >> prisma/.env
         - echo "NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL" >> .env
-        - echo "NEXT_PUBLIC_EXE_URL=$NEXT_PUBLIC_EXE_URL" >> .env
         - echo "API_URL=$API_URL" >> .env
         - npm run build
   artifacts:
