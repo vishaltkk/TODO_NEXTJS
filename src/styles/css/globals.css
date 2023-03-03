@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.content p {
+  @apply my-6;
+}
+
+.content ul {
+  @apply my-6;
+}
+
+/* Site fonts */
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-ExtraBoldItalic.woff2') format('woff2'),
+    url('../fonts/Gilroy-ExtraBoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-ExtraBold.woff2') format('woff2'),
+    url('../fonts/Gilroy-ExtraBold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-RegularItalic.woff2') format('woff2'),
+    url('../fonts/Gilroy-RegularItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Medium.woff2') format('woff2'),
+    url('../fonts/Gilroy-Medium.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-MediumItalic.woff2') format('woff2'),
+    url('../fonts/Gilroy-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Regular.woff2') format('woff2'),
+    url('../fonts/Gilroy-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body {
+  background: #ffffff;
+  font-family: Gilroy;
+}
+
+
+@media (max-width: 1023px) {
+  .st_rounded_t_2xl {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+  .st_rounded_b_2xl {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+}
+
+.nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  transition: background-color 1s;
+}
+
+.nav_bg_close {
+  background-color: #ffffff;
+  -webkit-transition: background-color 0.1s;
+  transition: background-color 0.1s;
+  border-width: thin;
+}
+
+.line_clamp_title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.line_clamp_intro_1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line_clamp_intro_2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nav_bg_close_post_page {
+  background-color: #10161f;
+  -webkit-transition: background-color 0.1s;
+  transition: background-color 0.1s;
+}
+
+.image_gradient {
+  -webkit-mask-image: url(/images/post-thumbnail.png);
+  mask-image: url(/images/post-thumbnail.png);
+  -webkit-mask-size: 70%;
+  mask-size: 70%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.nav_bg_open {
+  height: 100% !important;
+  background-color: #10161f;
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
+  overflow: auto;
+}
+
+.scrollerNav {
+  height: 6rem;
+  z-index: 1;
+}
+
+.scrollerNavOpen {
+  height: 100% !important;
+  background-color: #10161f !important;
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
+  overflow: auto;
+  z-index: 0;
+}
+
+.fade_in_text {
+  color: #fff;
+  -webkit-animation: fadein 2s ease-in-out;
+  -moz-animation: fadein 2s ease-in-out;
+  -o-animation: fadein 2s ease-in-out;
+  -ms-animation: fadein 2s ease-in-out;
+  animation: fadein 2s ease-in-out;
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0.3;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  0% {
+    opacity: 0.3;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  0% {
+    opacity: 0.3;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.paraheight {
+  line-height: 2.2rem;
+}
+
+.heading2 {
+  line-height: 3rem;
+}
+
+#content1::after{
+    content: "\a";
+    white-space: pre;
+}
+
+@media screen and (min-width: 1000px) {
+  .heading2 {
+    line-height: 4rem;
+  }
+}

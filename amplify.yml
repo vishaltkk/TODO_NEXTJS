@@ -1,0 +1,30 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - echo "NEXTAUTH_SECRET=$NEXTAUTH_SECRET" >> .env
+        - echo "NEXT_SITE_URL=$NEXT_SITE_URL" >> .env
+        - echo "NEXTAUTH_URL=$NEXTAUTH_URL" >> .env
+        - echo "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID" >> .env
+        - echo "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET" >> .env
+        - echo "DATABASE_URL=$DATABASE_URL" >> .env
+        - echo "PG_ID=$PG_ID" >> .env
+        - echo "PG_API=$PG_API" >> .env
+        - echo "PG_SECRET=$PG_SECRET" >> .env
+        - echo "X_API_VERSION=$X_API_VERSION" >> .env
+        - echo "CHROME_EXTENSION_ID=$CHROME_EXTENSION_ID" >> .env
+        - echo "DATABASE_URL=$DATABASE_URL" >> prisma/.env
+        - echo "NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL" >> .env
+        - echo "NEXT_PUBLIC_EXE_URL=$NEXT_PUBLIC_EXE_URL" >> .env
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
