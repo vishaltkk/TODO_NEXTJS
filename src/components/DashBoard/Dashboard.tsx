@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { MainFooter } from '../MainFooter';
-import styles from './DashBoard.module.css';
+import styles from './Dashboard.module.css';
 
 const DashBoard: FC = () => {
   return (
