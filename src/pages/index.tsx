@@ -22,13 +22,8 @@ const Index: React.FC<MainPageProps> = (props) => {
 export const getStaticProps: GetStaticProps = () => {
   return {
     props: {
-      navBarProp: AppConfig.navBarProp,
-      playerProp: AppConfig.playerProp,
-      downloadProp: AppConfig.downloadProp,
-      testimonialProp: AppConfig.testimonialProp,
       siteName: AppConfig.siteName,
       companyEmailAddress: AppConfig.companyEmailAddress,
-      footerProp: AppConfig.footerProp,
     },
   };
 };

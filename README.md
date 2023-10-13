@@ -6,6 +6,63 @@
 
 - Node.js 14+ and npm
 
+### Curl Workings remove the session layer
+
+#### readtodo
+
+Request
+
+```
+curl http://localhost:3000/api/todos/readTodo
+```
+
+Response 
+
+when present resposne
+```
+
+```
+
+when empty todos response
+```
+{"todos":[]}
+```
+
+#### readtodobyid
+
+ curl --location --request GET 'http://127.0.0.1:3000/api/todos/readTodoById?todoId=YOUR_TODO_ID' \ 
+--header 'Content-Type: application/json' \
+--data '{
+    "test":"test"
+}'
+
+when present resposne
+```
+
+```
+
+when empty todo not found
+```
+{"error":"Todo not found"}
+```
+
+#### create todo
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "name": "New Todo",
+  "description": "This is a new todo item.",
+  "tag": "TODO"
+}' http://localhost:3000/api/createTodo
+
+#### delete todo
+
+curl -X DELETE -H "Content-Type: application/json" \
+     -d '{
+       "todoId": "TODO_ID"
+     }' \
+     http://localhost:3000/api/deleteTodo
+
+
 ### Getting started
 
 Run the following command on your local environment:
@@ -171,8 +228,8 @@ Navbar
                       <div className={styles.div_73683265526}>
                         <h1 className={styles.h1_65667333178}>
                           <img
-                            alt="expertiaLogotext"
-                            src="/images/expertiaLogotext.png"
+                            alt="logTodoLogotext"
+                            src="/images/logTodoLogotext.png"
                             className={styles.img_48113173873}
                           ></img>{' '}
                         </h1>
@@ -191,3 +248,5 @@ Navbar
                         </div>{' '}
                       </div>{' '}
                     </div>{' '}
+
+

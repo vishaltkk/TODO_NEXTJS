@@ -105,11 +105,6 @@ interface FooterProp {
 
 interface MainPageProps {
   SITEURL: string;
-  SIGNIN_LINK: string;
-  PLUGIN_URL: string;
-  EXE_URL: string;
-  ROOT_DOWNLOAD_LINK: string;
-  DOCUMENTATION_LINK: string;
   siteName: string;
   authurl: string; // FIXME : Need to add a url checker.
   title: string;
@@ -117,11 +112,6 @@ interface MainPageProps {
   description: string;
   lastUpdateDate: string;
   companyEmailAddress: string;
-  navBarProp: NavBarProps;
-  playerProp: PlayerProps;
-  downloadProp: DownloadProps;
-  testimonialProp: TestimonialProps;
-  footerProp: FooterProp;
 }
 
 export type {

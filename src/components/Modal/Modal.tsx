@@ -1,34 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 
-import styles from './Modal.module.css';
+interface ModalProps {
+  isOpen: boolean;
+  handleClose: () => void;
+  children: React.ReactNode;
+}
 
-// Need to add types to the below components
+const Modal: React.FC<ModalProps> = ({ isOpen, children }) => {
+  if (!isOpen) return null;
 
-const Modal = ({ show, children }) => {
-  const [isBrowser, setIsBrowser] = useState(false);
-
-  useEffect(() => {
-    setIsBrowser(true);
-  }, []);
-
-  const modalContent =
-    show === 0 ? (
-      <div className={styles.styledModalOverlay}>
-        <div className={styles.styledModal}>
-          <div className={styles.styledModalBody}>{children}</div>
-        </div>
-      </div>
-    ) : null;
-
-  if (isBrowser) {
-    return ReactDOM.createPortal(
-      modalContent,
-      document.getElementById('modal-root')
-    );
-  }
-  return null;
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="rounded-lg bg-white p-4 shadow-md">{children}</div>
+    </div>,
+    document.getElementById('modal-root')!
+  );
 };
 
 export { Modal };

@@ -1,6 +1,7 @@
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import { DashBoard } from '../components/DashBoard/Dashboard';
+import { MainFooter } from '../components/MainFooter';
 import { Navbar } from '../components/NavBar';
 import { MainPageProps } from '../types/models';
 
@@ -15,25 +16,14 @@ type IMainProps = {
   data: MainPageProps;
 };
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const Main: FC<IMainProps> = ({ meta, data }) => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-
   return (
     <>
       {meta}
-      <Navbar
-        navbarOpen={navbarOpen}
-        setNavbarOpen={setNavbarOpen}
-        navBarProp={data.navBarProp}
-      />
-      <div
-        className={`${navbarOpen ? `invisible` : `visible`}`}
-        style={{ overflowX: 'hidden' }}
-      ></div>
-      <div className="h-24 lg:h-0" />
-      <div className={`${navbarOpen ? `invisible` : `visible`}`}>
-        <DashBoard />
-      </div>
+      <Navbar />
+      <DashBoard />
+      <MainFooter />
     </>
   );
 };

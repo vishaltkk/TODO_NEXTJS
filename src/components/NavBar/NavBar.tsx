@@ -1,136 +1,125 @@
 /*
  * @TODO improve the transition for the text
  */
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 
-import { NavBarProps } from '../../types/models';
-import openInNewTab from '../../utils/useNewTabOpener';
-import styles from './Navbar.module.css';
-import { NavLogo } from './NavLogo';
+import Link from 'next/link';
 
-const NavBarEl: FC<{
-  logolink: string;
-  color: string;
-  toggled: boolean;
-}> = (props): JSX.Element => {
-  // const { color, toggled, onToggle } = props;
-  const { color } = props;
+const Navbar: FC = () => {
   return (
-    <div
-      className={`flex items-center justify-between ${
-        color === 'white' ? 'bg-gradient-to-b from-gray-300 to-white' : ''
-      } px-5 pt-4 sm:px-10 md:px-16 lg:px-32`}
-    >
-      <a href={props.logolink}>
-        <NavLogo color={color} />
-      </a>
-      <div className={styles.div_86758063485}>
-        <a className={styles.a_93597594673}>Request a demo </a>
-        <a className={styles.a_69010943852}>Jobs </a>
-        <a className={styles.a_32885897673}>Login </a>
-        <button
-          type="submit"
-          className={styles.button_92013957928}
-          onClick={(e) => {
-            e.preventDefault();
-            openInNewTab('/auth/signin');
-          }}
-        >
-          Get Started{' '}
-        </button>{' '}
-      </div>
-    </div>
-  );
-};
-
-const Navbar: FC<{
-  navbarOpen: boolean;
-  setNavbarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  navBarProp: NavBarProps;
-}> = (props) => {
-  const [height, setHeight] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    window.addEventListener('scroll', showNavWhileScroll);
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    return () => window.removeEventListener('scroll', showNavWhileScroll);
-  });
-
-  const showNavWhileScroll = () => {
-    const heightToHideFrom = 200;
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    const oldHeight = height;
-    setHeight(winScroll);
-    if (oldHeight > winScroll && winScroll > heightToHideFrom) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  const [show, setShow] = useState(true);
-  const controlNavbar = () => {
-    if (window.scrollY > 100) {
-      setShow(false);
-    } else {
-      setShow(true);
-    }
-  };
-  useEffect(() => {
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    if (winScroll > 100) {
-      setShow(false);
-    }
-    window.addEventListener('scroll', controlNavbar);
-    return () => {
-      window.removeEventListener('scroll', controlNavbar);
-    };
-  }, []);
-
-  return (
-    <>
-      <div
-        style={{
-          position: 'fixed',
-          userSelect: 'auto',
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          width: '100vw',
-          height: '100vh',
-        }}
-        className={`mt-10 h-20 w-full pb-4 lg:h-24
-            ${isVisible ? `visible` : `invisible`}
-            ${props.navbarOpen ? `scrollerNavOpen` : `scrollerNav`}`}
-      >
-        <NavBarEl
-          color="white"
-          toggled={props.navbarOpen}
-          logolink={props.navBarProp.logoLink}
-        />
-      </div>
-      {show && (
-        <div
-          className={`nav mt-10 h-20 lg:h-24 ${
-            props.navbarOpen ? `nav_bg_open` : `nav_bg_close`
-          }
-        `}
-        >
-          <div className={`h-16`}>
-            <NavBarEl
-              color={props.navbarOpen ? 'white' : 'black'}
-              toggled={props.navbarOpen}
-              logolink={props.navBarProp.logoLink}
+    <header>
+      <nav className="border-gray-200 bg-white px-4 py-2.5 dark:bg-gray-800 lg:px-6">
+        <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
+          <a href="http://localhost:3000" className="flex items-center">
+            <img
+              src="/logo.svg"
+              className="mr-3 h-6 sm:h-9"
+              alt="LogToDo Logo"
             />
+            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+              LogToDo
+            </span>
+          </a>
+          <div className="flex items-center lg:order-2">
+            <Link
+              href="/auth/signin"
+              className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mr-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4"
+            >
+              Login
+            </Link>
+            <button
+              data-collapse-toggle="mobile-menu-2"
+              type="button"
+              className="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden"
+              aria-controls="mobile-menu-2"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              <svg
+                className="h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <svg
+                className="hidden h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div
+            className="hidden w-full items-center justify-between lg:order-1 lg:flex lg:w-auto"
+            id="mobile-menu-2"
+          >
+            <ul className="mt-4 flex flex-col font-medium lg:mt-0 lg:flex-row lg:space-x-8">
+              <li>
+                <a
+                  href="#"
+                  className="bg-primary-700 lg:text-primary-700 block rounded py-2 pr-4 pl-3 text-white dark:text-white lg:bg-transparent lg:p-0"
+                  aria-current="page"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
+                >
+                  Company
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
+                >
+                  Marketplace
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
+                >
+                  Features
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
+                >
+                  Team
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:border-0 lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:dark:hover:text-white"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-      )}
-    </>
+      </nav>
+    </header>
   );
 };
 
