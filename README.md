@@ -1,6 +1,6 @@
 # TODOAI
 
-[![Watch the video](<applicationvideo/Screen Recording 2023-10-13 at 11.42.08 PM.mov>)
+[Title](<applicationvideo/Screen Recording 2023-10-13 at 11.42.08 PM.mov>)
 
 ### Requirements
 
