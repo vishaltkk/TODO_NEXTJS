@@ -42,13 +42,14 @@ const TodoUpdater: React.FC<TodoUpdaterProps> = ({ todo, onClose }) => {
         );
 
         if (response.status === 200) {
-          // Dispatch an action to update the todo in the context state
           dispatch({ type: 'UPDATE_TODO', payload: updatedTodo });
           onClose();
         } else {
+          // eslint-disable-next-line no-console
           console.error('Error updating todo:', response.data.error);
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error updating todo:', error);
       }
     }
