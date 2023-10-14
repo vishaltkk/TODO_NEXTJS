@@ -18,6 +18,10 @@ const updateTodoById = async (req, res) => {
     // Extract the todo ID, name, description, and status from the request body.
     const { todoId, name, description, tag } = req.body;
 
+    if (name && name.length < 1) {
+      res.status(400).json({ error: 'Missing required parameters' });
+    }
+
     // Use the session user's email as the userId to ensure they can only update their own todos.
     const userId = session.user.email;
 
