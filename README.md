@@ -1,6 +1,6 @@
 # TODOAI
 
-[Do watch the video of the application](<applicationvideo/Screen Recording 2023-10-13 at 11.42.08 PM.mov>)
+https://github.com/vishaltkk/TODO_NEXTJS/assets/122444029/f9c38200-56ed-47f9-94e8-1e9c593c8c50
 
 ### Requirements
 
