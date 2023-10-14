@@ -1,21 +1,9 @@
-/* eslint-disable unused-imports/no-unused-vars */
 import React, { useState } from 'react';
 
 import axios from 'axios';
-// Import getSession from NextAuth
+import { toast } from 'react-toastify';
 
 import { useTodo } from '../../lib/TodoContext';
-
-interface Todo {
-  title: string;
-  description: string;
-  status: string;
-}
-
-interface TodoCreatorProps {
-  addTodo: (todo: Todo) => void;
-  onClose: () => void; // Add a callback to close the modal
-}
 
 const TodoCreator: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const { dispatch } = useTodo();
@@ -37,12 +25,10 @@ const TodoCreator: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           dispatch({ type: 'ADD_TODO', payload: createdTodo });
           onClose(); // Close the modal after adding a todo
         } else {
-          console.error('Error deleting todo:', response.data.error);
-          // Handle error, e.g., display an error message
+          toast('Error updating TODO');
         }
       } catch (error) {
-        console.error('Error deleting todo main:', error);
-        // Handle error, e.g., display an error message
+        toast('Error updating TODO');
       }
     }
   };

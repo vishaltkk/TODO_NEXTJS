@@ -2,6 +2,8 @@ import React from 'react';
 
 import { PrismaClient, User } from '@prisma/client';
 import { getSession } from 'next-auth/react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { TodoProvider } from '../lib/TodoContext';
 import { TodosTemplate } from '../templates/TodosTemplate';
@@ -66,9 +68,12 @@ interface TodoPageProp {
 const Todos: React.FC<TodoPageProp> = (props) => {
   const isMobileView = useIsMobile();
   return (
-    <TodoProvider todos={props.todos}>
-      {isMobileView ? <TodosTemplateMWeb /> : <TodosTemplate />}
-    </TodoProvider>
+    <>
+      <ToastContainer />
+      <TodoProvider todos={props.todos}>
+        {isMobileView ? <TodosTemplateMWeb /> : <TodosTemplate />}
+      </TodoProvider>
+    </>
   );
 };
 

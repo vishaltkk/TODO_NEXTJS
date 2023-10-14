@@ -18,6 +18,10 @@ const createTodo = async (req, res) => {
     // Parse the JSON request body to extract the todo data.
     const { name, description, tag } = req.body;
 
+    if (!name || name.length < 1) {
+      res.status(400).json({ error: 'Missing required parameters' });
+    }
+
     const userid: User[] = await prisma.user.findMany({
       where: { email: session.user.email },
     });

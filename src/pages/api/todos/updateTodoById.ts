@@ -15,8 +15,8 @@ const updateTodoById = async (req, res) => {
   }
 
   try {
-    // Extract the todo ID, title, description, and status from the request body.
-    const { todoId, title, description, tag } = req.body;
+    // Extract the todo ID, name, description, and status from the request body.
+    const { todoId, name, description, tag } = req.body;
 
     // Use the session user's email as the userId to ensure they can only update their own todos.
     const userId = session.user.email;
@@ -29,18 +29,18 @@ const updateTodoById = async (req, res) => {
 
     // Create an object with the fields to update, filtering out undefined values.
     let updateData = {
-      ...(title && { title }),
+      ...(name && name.length > 0 && { name }),
       ...(description && { description }),
     };
 
     // Check if 'status' is provided and is a valid value based on the 'Tag' enum.
-    if (tag !== undefined && ['IN_PROGRESS'].includes(tag)) {
+    if (tag !== undefined && tag === 'IN_PROGRESS') {
       updateData = { ...updateData, ...{ tag: Tag.IN_PROGRESS } };
     }
-    if (tag !== undefined && ['TODO'].includes(tag)) {
+    if (tag !== undefined && tag === 'TODO') {
       updateData = { ...updateData, ...{ tag: Tag.TODO } };
     }
-    if (tag !== undefined && ['DONE'].includes(tag)) {
+    if (tag !== undefined && tag === 'DONE') {
       updateData = { ...updateData, ...{ tag: Tag.DONE } };
     }
 

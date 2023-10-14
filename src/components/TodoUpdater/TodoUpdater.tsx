@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import { useTodo } from '../../lib/TodoContext';
 
@@ -45,12 +46,10 @@ const TodoUpdater: React.FC<TodoUpdaterProps> = ({ todo, onClose }) => {
           dispatch({ type: 'UPDATE_TODO', payload: updatedTodo });
           onClose();
         } else {
-          // eslint-disable-next-line no-console
-          console.error('Error updating todo:', response.data.error);
+          toast('Error updating TODO');
         }
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('Error updating todo:', error);
+        toast('Error updating TODO');
       }
     }
   };
