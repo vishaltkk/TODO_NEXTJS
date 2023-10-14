@@ -1,6 +1,13 @@
 # TODOAI
 
+Desktop View -
+
 https://github.com/vishaltkk/TODO_NEXTJS/assets/122444029/f9c38200-56ed-47f9-94e8-1e9c593c8c50
+
+Mobile View -
+
+https://github.com/vishaltkk/TODO_NEXTJS/assets/122444029/143d1efd-6936-4c8c-aaa8-91caac7499ce
+
 
 ### Requirements
 
